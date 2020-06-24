@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:dialog header="Login" modal="true" visible="true">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Usuario: " />
+				<p:inputText value="#{LoginBean.txtUsuario}" />
+				<p:outputLabel value="Senha: " />
+				<p:password value="#{LoginBean.txtSenha}" />
+				<p:commandButton value="Entrar" update="@form" action="#{LoginBean.entrar}" />
+
+				<p:commandButton value="Criar Usuario"
+					onclick="PF('criarUsuario').show();" />
+
+			</p:panelGrid>
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		</p:dialog>
+
+
+		
+		<!-- Criar usuario -->
+		<p:dialog header="Usuario" modal="true" visible="false"
+			widgetVar="criarUsuario">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome: " />
+				<p:inputText value="#{LoginBean.usuario.nome}" />
+				<p:outputLabel value="Cpf: " />
+				<p:inputText value="#{LoginBean.usuario.cpf}" />
+				<p:outputLabel value="Senha: " />
+				<p:password value="#{LoginBean.usuario.senha}" />
+				<p:commandButton value="Salvar" update="@form"
+					actionListener="#{LoginBean.criarUsuario}" />
+					
+				
+				
+				
+					<p:commandButton value="Pesquisar" update="@form"
+				actionListener="#{UsuarioBean.pesquisar}" />
+	
+		
+		<p:commandButton value="Excluir" update="@form"
+				actionListener="#{UsuarioBean.remover}" />
+	
+			<p:dataTable var="usuario" value="#{UsuarioBean.usuario}">
+				<p:column headerText="NOME">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{usuario.cpf}" />
+				</p:column>
+
+				<p:column headerText="SENHA">
+					<h:outputText value="#{usuario.senha}" />
+				</p:column>
+
+			
+
+			</p:dataTable>
+		
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+			</p:panelGrid>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
